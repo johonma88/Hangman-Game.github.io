@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Football Team Hangman</title>
+
+  <!-- Bootstrap File -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+  <!-- JQuery -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <!-- <script src="https://code.jquery.com/jquery.js"></script> -->
+
+</head>
+<body>
+  	<div class="jumbotron" style="text-align:center; font-family: 'Cinzel', serif;" >
+  			<h1>Football Team Hangman</h1>
+  			<p><strong>Choose a category to play</strong></p>
+  		
+ 		    <button class="btnCategory btnCollege"  id="buttonCollege" style="margin-left: 5px; color: white; background-color: black; height:30px;">College</button>
+       <button class="btnCategory btnNFL"  id="buttonNFL" style="margin-left: 5px; color: white; background-color: black; height:30px;">NFL</button>
+    </div> 
+
+    <div id="category"></div>
+
+    <div id="wordGuess"></div>
+
+    <div id="guess"></div>
+  
+    <P>Choose a letter</P>
+    <div id="buttons"></div>
+
+
+    <script type="text/javascript">
+      $(document).ready(function() {
+
+		    var collegeTeam=["falcons","broncos","rams","bulldogs","rainbow warriors","wolf pack","lobos","aztecs","spartans","rebels","aggies","cowboys"]
+		    var nflTeam=["broncos","falcons","ravens","Panthers","bears","bengals","cowboys","lions","packers","patriots","vikings","dolphins","giants"]
+ 
+        var letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+
+         var UserGuess= [];
+
+        for (var i=0; i<letters.length; i++)
+        {
+        var letterBtn = $("<button>");
+        letterBtn.addClass ("letter-button letter letter-button-color");
+        letterBtn.attr("data-letter", letters[i]);
+        letterBtn.text(letters[i]);
+        $("#buttons").append(letterBtn);
+        };
+
+       $(".letterbtn").click(function(){
+        var key=$(".letterBtn").attr("data-letter")
+          console.log(key);
+
+       })
+       
+        
+   
+        $(".btnCollege").on("click", function(){
+          var targetDiv = document.getElementById("category");
+          targetDiv.innerHTML = "Category: College";
+          var hangmanCollege = collegeTeam[Math.floor((Math.random()* (collegeTeam.length))+1)];
+          
+          var guessNumber = document.getElementById("guess");
+          guessNumber.innerHTML = "You have : " + hangmanCollege.length + " guesses remaining";
+          
+          console.log(hangmanCollege);
+          
+          wordGuess.innerHTML=hangmanCollege;
+
+         
+
+        });
+        
+        $(".btnNFL").on("click", function(){
+          var targetDiv = document.getElementById("category");
+          targetDiv.innerHTML = "Category: NFL";
+          var hangmanNfl = nflTeam[Math.floor((Math.random()* (nflTeam.length))+1)];
+          var guessNumber = document.getElementById("guess");
+          guessNumber.innerHTML = "You have : " + hangmanNfl.length + " guesses remaining";
+          
+          console.log(hangmanNfl);
+          wordGuess.innerHTML=hangmanNfl;
+        });
+        
+      });
+        
+          
+
+
+        
+     
+
+
+   
+
+    </script>   
+      
+
+  </body>
+
+  </html>
+
+
