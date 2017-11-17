@@ -9,7 +9,7 @@
 
   <!-- JQuery -->
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <!-- <script src="https://code.jquery.com/jquery.js"></script> -->
+  <script src="https://code.jquery.com/jquery.js"></script>
 
 </head>
 <body>
@@ -20,75 +20,169 @@
  		    <button class="btnCategory btnCollege"  id="buttonCollege" style="margin-left: 5px; color: white; background-color: black; height:30px;">College</button>
        <button class="btnCategory btnNFL"  id="buttonNFL" style="margin-left: 5px; color: white; background-color: black; height:30px;">NFL</button>
     </div> 
+    <div class="container" >
+      <div class="panel panel-default" style="text-align:center;"><h2 id="category" style="background-color; black; color; white;"> </h2></div>
+    </div>
+    
+    <div class="container"style="text-align:center;">
+      <h1 id="wordGuess"> </h1>
+    </div>
+   
+    <div class="container"style="text-align:center;">
+      <span id="guess"></span> 
+    </div>
 
-    <div id="category"></div>
+    <div class="container"style="text-align:center;">
+      <span id="win"></span> 
+    </div>
 
-    <div id="wordGuess"></div>
+    <div class="container"style="text-align:center;">
+      <span id="lost"></span> 
+    </div>
 
-    <div id="guess"></div>
-  
-    <P>Choose a letter</P>
-    <div id="buttons"></div>
+    <div class="container"style="text-align:center;">
+      <h3>Choose a letter</h3>
+      <div id="buttons"></div>
+    </div>
+   
+
+    <!-- <p> Used Letter</p> -->
+    <div id="usedLetter"></div>
 
 
     <script type="text/javascript">
       $(document).ready(function() {
-
+        //variables globales
 		    var collegeTeam=["falcons","broncos","rams","bulldogs","rainbow warriors","wolf pack","lobos","aztecs","spartans","rebels","aggies","cowboys"]
 		    var nflTeam=["broncos","falcons","ravens","Panthers","bears","bengals","cowboys","lions","packers","patriots","vikings","dolphins","giants"]
- 
-        var letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
-
+        var hangmanCollege = "";
+        var hangmanNfl = "";
+        var letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
          var UserGuess= [];
+         var result = [];
+         var wrongLetters = [];
+         var letterArray = [];
+         var letterBlank = 0;
+         var hangmanCollege = collegeTeam[Math.floor((Math.random()* (collegeTeam.length))+1)];
+         var hangmanNfl = nflTeam[Math.floor((Math.random()* (nflTeam.length))+1)];
 
-        for (var i=0; i<letters.length; i++)
-        {
-        var letterBtn = $("<button>");
-        letterBtn.addClass ("letter-button letter letter-button-color");
-        letterBtn.attr("data-letter", letters[i]);
-        letterBtn.text(letters[i]);
-        $("#buttons").append(letterBtn);
-        };
+        //contadores
+        var winNumber = 0;
+        var lostNumber = 0;
+        var guessNumber = document.getElementById("guess");
 
-       $(".letterbtn").click(function(){
-        var key=$(".letterBtn").attr("data-letter")
-          console.log(key);
 
-       })
-       
-        
-   
-        $(".btnCollege").on("click", function(){
-          var targetDiv = document.getElementById("category");
-          targetDiv.innerHTML = "Category: College";
-          var hangmanCollege = collegeTeam[Math.floor((Math.random()* (collegeTeam.length))+1)];
-          
-          var guessNumber = document.getElementById("guess");
-          guessNumber.innerHTML = "You have : " + hangmanCollege.length + " guesses remaining";
-          
-          console.log(hangmanCollege);
-          
-          wordGuess.innerHTML=hangmanCollege;
-
+      win.innerHTML = "Win: " + winNumber;
+       lost.innerHTML = "Lost: "+lostNumber;
          
 
-        });
-        
-        $(".btnNFL").on("click", function(){
-          var targetDiv = document.getElementById("category");
-          targetDiv.innerHTML = "Category: NFL";
-          var hangmanNfl = nflTeam[Math.floor((Math.random()* (nflTeam.length))+1)];
-          var guessNumber = document.getElementById("guess");
-          guessNumber.innerHTML = "You have : " + hangmanNfl.length + " guesses remaining";
+       for (var i=0; i<letters.length; i++)
+          {
+              var letterBtn = $("<button>");
+              letterBtn.addClass ("letter-button letter letter-button-color");
+              letterBtn.attr("data-letter", letters[i]);
+              letterBtn.text(letters[i]);
+              $("#buttons").append(letterBtn);
+          };
+
+         $(".btnCollege").on("click", function()
+         {
+              var result = [];
+              var wrongLetters = [];
+              var targetDiv = document.getElementById("category");
+              targetDiv.innerHTML = "Category: College";
+              hangmanCollege = collegeTeam[Math.floor((Math.random()* (collegeTeam.length))+1)];
+              letterArray = hangmanCollege.split("");
+              letterBlank = hangmanCollege.length;
           
-          console.log(hangmanNfl);
-          wordGuess.innerHTML=hangmanNfl;
-        });
+              guessNumber.innerHTML = "You have : " + hangmanCollege.length + " guesses remaining";
+          
+              for (var i=0; i<letterBlank; i++)
+              {
+                   result.push("_");
+               }
+               // put blanks for the word to guess  .join(" ") to get rid of the comas
+               document.getElementById("wordGuess").innerHTML = result.join(" ");
+
+
+                console.log(hangmanCollege);
+                console.log(letterArray);
+                console.log(result);
         
-      });
+         });
+        
+        $(".btnNFL").on("click", function()
+        {
+            var result = [];
+            var wrongLetters = [];
+            var targetDiv = document.getElementById("category");
+            targetDiv.innerHTML = "Category: NFL";
+            hangmanNfl = nflTeam[Math.floor((Math.random()* (nflTeam.length))+1)];
+            letterArray = hangmanNfl.split("");
+            letterBlank = hangmanNfl.length;
+            var guessNumber = document.getElementById("guess");
+             guessNumber.innerHTML = "You have : " + hangmanNfl.length + " guesses remaining";
+           
+            for (var i=0; i<letterBlank; i++)
+            {
+             result.push("_");
+            }
+         
+            document.getElementById("wordGuess").innerHTML = result.join(" ");
+
+
+          console.log(hangmanNfl);
+          console.log(hangmanNfl);
+          console.log(result);
+          
+
+
+
+        });
+
+
         
           
 
+       $(".letter-button").click(function()
+       {
+        var newKey = $("<div>");
+         newKey= ($(this).attr("data-letter"));
+          console.log(newKey);
+
+       
+          var letterInWord = false;
+          for(var j=0; j<letterBlank; j++)
+          {
+            if (hangmanNfl[j]==newKey)
+              letterInWord = true;
+          }
+
+       });
+
+       
+        
+     
+        
+
+   
+
+      
+      
+ 
+
+
+
+
+     
+      win.innerHTML = "Win: " + winNumber;
+       lost.innerHTML = "Lost: "+lostNumber;
+       });       
+        
+   
+        
+          
+      
 
         
      
