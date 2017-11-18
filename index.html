@@ -90,7 +90,7 @@
         //College Button
          $(".btnCollege").on("click", function()
          {
-              var result = [];
+              var resultCollege = [];
               var wrongLetters = [];
               var targetDiv = document.getElementById("category");
               targetDiv.innerHTML = "Category: College";
@@ -105,15 +105,15 @@
           
               for (var i=0; i<letterBlank; i++)
               {
-                   result.push("_");
+                   resultCollege.push("_");
                }
                // put blanks for the word to guess  .join(" ") to get rid of the comas
-               document.getElementById("wordGuess").innerHTML = result.join(" ");
+               document.getElementById("wordGuess").innerHTML = resultCollege.join(" ");
 
 
                 console.log(hangmanCollege);
                 console.log(letterArray);
-                console.log(result);
+                console.log(resultCollege);
                 var guessNumber = hangmanCollege.length;
                 var guessLeft = guessNumber;
                 console.log(guessNumber, guessLeft);
@@ -142,9 +142,9 @@
                 {
                     if(hangmanCollege[i]==newKey)
                     {   
-                     result[i]=newKey;
+                     resultCollege[i]=newKey;
                     
-                     document.getElementById("wordGuess").innerHTML = result.join(" ");
+                     document.getElementById("wordGuess").innerHTML = resultCollege.join(" ");
                     };
                 };
               };
@@ -173,9 +173,9 @@
               {
                 if(hangmanCollege[i]==newKey)
                 {   
-                     result[i]=newKey;
+                     resultCollege[i]=newKey;
                     
-                     document.getElementById("wordGuess").innerHTML = result.join(" ");
+                     document.getElementById("wordGuess").innerHTML = resultCollege.join(" ");
                 }
               }
             }
