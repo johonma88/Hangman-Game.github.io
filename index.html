@@ -57,6 +57,8 @@
 		    var nflTeam=["broncos","falcons","ravens","panthers","bears","bengals","cowboys","lions","packers","patriots","vikings","dolphins","giants"]
         var hangmanCollege = "";
         var hangmanNfl = "";
+        var resultCollege = [];
+         var wrongLetters = [];
         var letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
          var UserGuess= [];
          var result = [];
@@ -70,7 +72,7 @@
         //contadores
         var winNumber = 0;
         var lostNumber = 0;
-        var guessNumber = document.getElementById("guess");
+        var guessNumber = 0;
         var guessLeft = guessNumber;
         console.log(guessLeft);
 
@@ -90,15 +92,15 @@
         //College Button
          $(".btnCollege").on("click", function()
          {
-              var resultCollege = [];
-              var wrongLetters = [];
+               resultCollege = [];
+               wrongLetters = [];
               var targetDiv = document.getElementById("category");
               targetDiv.innerHTML = "Category: College";
               hangmanCollege = collegeTeam[Math.floor((Math.random()* (collegeTeam.length))+1)];
               letterArray = hangmanCollege.split("");
               letterBlank = hangmanCollege.length;
-              var guessNumber = document.getElementById("guess");
-            var guessLeft = hangmanCollege.length;
+              guessNumber = document.getElementById("guess");
+              guessLeft = hangmanCollege.length;
              guessNumber.innerHTML = "You have : " + guessLeft + " guesses remaining";
            
               guessNumber.innerHTML = "You have : " + hangmanCollege.length + " guesses remaining";
@@ -159,29 +161,36 @@
                     guess.innerHTML = "You have : " +guessLeft + " guesses remaining";
                 } ;        
             });
+
+
+
+
+            if (guessLeft==0)
+          {
+            winNumber ++;
+            alert("choose a category to play again");
+           
+            Console.log(guessLeft);
+            console.log(winNumber);
+             resultCollege = [];
+             wrongLetters = [];
+              targetDiv = document.getElementById("category");
+              targetDiv.innerHTML = "Category: College";
+              hangmanCollege = collegeTeam[Math.floor((Math.random()* (collegeTeam.length))+1)];
+              letterArray = hangmanCollege.split("");
+              letterBlank = hangmanCollege.length;
+            guessLeft = hangmanCollege.length;
+            guessNumber.innerHTML = "You have : " + guessLeft + " guesses remaining";
+           
+           
+              
+          };
+     
+           
+
+        
           });
-        // for (var i=0;i<letterBlank; i++)
-        // {
-        //     var status= hangmanCollege.indexOf(newKey);
-        //     if (hangmanCollege[i]==newKey)
-        //     {
-        //       letterInWord = true;
-        //       if (letterInWord)
-        //       {
-        //         if(hangmanCollege[i]==newKey)
-        //         {   
-        //              resultCollege[i]=newKey;
-                    
-        //              document.getElementById("wordGuess").innerHTML = resultCollege.join(" ");
-        //         }
-        //       }
-        //     }
-        //     else if (status= -1)
-        //     {
-        //       guessLeft--;
-        //       guess.innerHTML = "You have : " +guessLeft + " guesses remaining";
-        //     };
-        //   };
+
        
 
 
@@ -254,6 +263,26 @@
             });
     
 
+            if (guessLeft==0)
+          {
+            winNumber ++;
+            alert("choose a category to play again");
+           
+            Console.log(guessLeft);
+            console.log(winNumber);
+             resultCollege = [];
+             wrongLetters = [];
+              targetDiv = document.getElementById("category");
+              targetDiv.innerHTML = "Category: College";
+              hangmanCollege = collegeTeam[Math.floor((Math.random()* (collegeTeam.length))+1)];
+              letterArray = hangmanCollege.split("");
+              letterBlank = hangmanCollege.length;
+            guessLeft = hangmanCollege.length;
+            guessNumber.innerHTML = "You have : " + guessLeft + " guesses remaining";
+           
+           
+              
+          };
      });
      
       win.innerHTML = "Win: " + winNumber;
