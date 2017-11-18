@@ -136,56 +136,53 @@
             if (hangmanCollege[j]==newKey)
             {
               letterInWord = true;
-              if (letterInWord)
-              {
-                for (var i=0; i<letterBlank; i++)
-                {
-                    if(hangmanCollege[i]==newKey)
-                    {   
+            }
+          };
+            
+           if (letterInWord)
+          {
+            for (var i=0; i<letterBlank; i++)
+            {
+                if(hangmanCollege[i]==newKey)
+                 {   
                      resultCollege[i]=newKey;
                     
                      document.getElementById("wordGuess").innerHTML = resultCollege.join(" ");
-                    };
-                };
-              };
+                 };
+             };
+              // };
             }
             else
                 {
                     guessLeft--;
                     // guessNumber--;
                     guess.innerHTML = "You have : " +guessLeft + " guesses remaining";
-                } ;
-
-          };
-           
-           
-          
-            
-        
-         });
-        for (var i=0;i<letterBlank; i++)
-        {
-            var status= hangmanCollege.indexOf(newKey);
-            if (hangmanCollege[i]==newKey)
-            {
-              letterInWord = true;
-              if (letterInWord)
-              {
-                if(hangmanCollege[i]==newKey)
-                {   
-                     resultCollege[i]=newKey;
+                } ;        
+            });
+          });
+        // for (var i=0;i<letterBlank; i++)
+        // {
+        //     var status= hangmanCollege.indexOf(newKey);
+        //     if (hangmanCollege[i]==newKey)
+        //     {
+        //       letterInWord = true;
+        //       if (letterInWord)
+        //       {
+        //         if(hangmanCollege[i]==newKey)
+        //         {   
+        //              resultCollege[i]=newKey;
                     
-                     document.getElementById("wordGuess").innerHTML = resultCollege.join(" ");
-                }
-              }
-            }
-            else if (status= -1)
-            {
-              guessLeft--;
-              guess.innerHTML = "You have : " +guessLeft + " guesses remaining";
-            };
-          };
-        });
+        //              document.getElementById("wordGuess").innerHTML = resultCollege.join(" ");
+        //         }
+        //       }
+        //     }
+        //     else if (status= -1)
+        //     {
+        //       guessLeft--;
+        //       guess.innerHTML = "You have : " +guessLeft + " guesses remaining";
+        //     };
+        //   };
+       
 
 
 
@@ -216,7 +213,7 @@
           console.log(hangmanNfl);
           console.log(result);
           
-          var guessNumber = document.getElementById("guess");
+          var guessNumber = hangmanNfl.length;
         var guessLeft = guessNumber;
 
 
@@ -226,40 +223,42 @@
          newKey= ($(this).attr("data-letter"));
           console.log(newKey);
 
-       
           var letterInWord = false;
           for(var j=0; j<letterBlank; j++)
           {
             if (hangmanNfl[j]==newKey)
+            {
               letterInWord = true;
-              if (letterInWord)
-              {
-                for (var i=0; i<letterBlank; i++)
-                {
-                    if(hangmanNfl[i]==newKey)
-                    {   
+            }
+          };
+            
+           if (letterInWord)
+          {
+            for (var i=0; i<letterBlank; i++)
+            {
+                if(hangmanNfl[i]==newKey)
+                 {   
                      result[i]=newKey;
                     
                      document.getElementById("wordGuess").innerHTML = result.join(" ");
-                    }
-                    else
+                 };
+             }
+              // };
+            }
+            else
                 {
                     guessLeft--;
-                    guess.innerHTML = "You have : " + guessLeft + " guesses remaining";
-                    console.log(guessLeft);
-                }
-                }
-              }
-              
-          }
-       });
-      });
+                    // guessNumber--;
+                    guess.innerHTML = "You have : " +guessLeft + " guesses remaining";
+                } ;        
+            });
+    
 
      });
      
       win.innerHTML = "Win: " + winNumber;
        lost.innerHTML = "Lost: "+lostNumber;
-      //  });   
+       });   
         
    
 
