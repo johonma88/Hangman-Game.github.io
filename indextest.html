@@ -11,9 +11,6 @@
   <!-- JQuery -->
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://code.jquery.com/jquery.js"></script>
-  <script src="includes/js/jquery.messagebox.js"></script>
-  <link rel="stylesheet" type="text/css" href="includes/css/messagebox.css" />
-  
   <!--link to fonts-->
   <link href="https://fonts.googleapis.com/css?family=Orbitron" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Fredoka+One" rel="stylesheet">
@@ -43,40 +40,27 @@
       <div class="panel panel-default" style="text-align:center;"><h2 id="category" style="background-color; black; color; white;"> </h2></div>
     </div>
     
-
-    <div class="container">
-    <div class="row">
-        <div class="col-md-8" style="float: left;">
-            <div class="section"style="text-align:center; color: white;">
-                <h1 id="wordGuess"> </h1>
-            </div>
+    <div class="container"style="text-align:center; color: white;">
+      <h1 id="wordGuess"> </h1>
+    </div>
    
-            <div class="section"style="text-align:center;color: white;">
-                <span id="guess"></span> 
-             </div>
+    <div class="container"style="text-align:center;color: white;">
+      <span id="guess"></span> 
+    </div>
 
-            <div class="section"style="text-align:center;color: white;">
-                 <span id="win" style="font-size:30px;"></span> 
-              
-            </div>
+    <div class="container"style="text-align:center;color: white;">
+      <span id="win" style="font-size:30px;"></span> 
+    </div>
 
-            <div class="section"style="text-align:center;color: white;">
-                <span id="lost" style="font-size:30px;"></span> 
-            </div>
-            <div class="section" style="text-align:center; ">
-                    <h3 style="color:white;">Choose a letter</h3>
-                    <div id="buttons"></div>
-                </div>
-            
+    <div class="container"style="text-align:center;color: white;">
+      <span id="lost" style="font-size:30px;"></span> 
+    </div>
 
-        </div>
-        <div class="col-md-4">
-                <canvas id="myCanvas"  width=400 height=600 style="width:400px; height:600px; background-color:aliceblue"></canvas>
-        </div>
-</div>  
-
-</div>
-
+    <div class="container"style="text-align:center; ">
+      <h3 style="color:white;">Choose a letter</h3>
+      <div id="buttons"></div>
+    </div>
+   
 
     <!-- <p> Used Letter</p> -->
     <div id="usedLetter"></div>
@@ -100,12 +84,11 @@
          var letterBlank = 0;
          var hangmanCollege = collegeTeam[Math.floor((Math.random()* (collegeTeam.length))+1)];
          var hangmanNfl = nflTeam[Math.floor((Math.random()* (nflTeam.length))+1)];
-        
         //contadores
         var winNumber = 0;
         var lostNumber = 0;
-        var guessNumber = 7;
-        var guessLeft = 7;
+        var guessNumber = -1;
+        var guessLeft = guessNumber;
         console.log(guessLeft);
       win.innerHTML = "Win: " + winNumber;
        lost.innerHTML = "Lost: "+lostNumber;
@@ -118,66 +101,6 @@
               letterBtn.text(letters[i]);
               $("#buttons").append(letterBtn);
           };
-
-
-          //canvas
-       var canvas = document.getElementById("myCanvas");
-        var ctx = canvas.getContext("2d");
-        ctx.fillStyle = "#FF0000";
-        //horizontal line at the bottom
-        ctx.moveTo(5,595);
-        ctx.lineTo(395,595);
-        ctx.stroke();
-        //vertical linea
-        ctx.moveTo(15,595);
-        ctx.lineTo(15,20);
-        ctx.stroke();
-      //horizontal line on top
-        ctx.moveTo(15,20);
-        ctx.lineTo(200,20);
-        ctx.stroke();
-   
-  
-
-   
-//         //small vertical line on top
-//         ctx.moveTo(200,20);
-//         ctx.lineTo(200,50);
-//         ctx.stroke();
-       
-//        //circle arc(x,y,r,startangle,endangle)
-//         ctx.beginPath();
-//         ctx.arc(200,90,40,0,2*Math.PI);
-//         ctx.stroke();
-        
-//         //horizontal line for the body
-//         ctx.moveTo(200,130);
-//         ctx.lineTo(200,350);
-//         ctx.stroke();
-   
-//               // left arm
-//         ctx.moveTo(200,160);
-//         ctx.lineTo(300,300);
-//         ctx.stroke();
-   
-//           //right arm
-//           ctx.moveTo(200,160);
-//         ctx.lineTo(100,300);
-//         ctx.stroke();
-     
-// //left leg
-//         ctx.moveTo(200,350);
-//         ctx.lineTo(300,500);
-//         ctx.stroke();
-        
-//             //right leg
-//         ctx.moveTo(200,350);
-//         ctx.lineTo(100,500);
-//         ctx.stroke();  
-       
-
-        
-
         //College Button
          $(".btnCollege").on("click", function()
          {
@@ -188,13 +111,12 @@
               hangmanCollege = collegeTeam[Math.floor((Math.random()* (collegeTeam.length))+1)];
               letterArray = hangmanCollege.split("");
               letterBlank = hangmanCollege.length;
-            //   guessNumber = document.getElementById("guess");
-              guessLeft = 7;
+              guessNumber = document.getElementById("guess");
+              guessLeft = hangmanCollege.length;
              guessNumber.innerHTML = "You have : " + guessLeft + " guesses remaining";
            
               guessNumber.innerHTML = "You have : " + hangmanCollege.length + " guesses remaining";
-              guess.innerHTML = "You have : " +guessLeft + " guesses remaining";
-
+          
               $(".letter-button").show(); 
             
               for (var i=0; i<letterBlank; i++)
@@ -206,8 +128,8 @@
                 console.log(hangmanCollege);
                 console.log(letterArray);
                 console.log(resultCollege);
-                // var guessNumber = hangmanCollege.length;
-                var guessLeft = 7;
+                var guessNumber = hangmanCollege.length;
+                var guessLeft = guessNumber;
                 console.log(guessNumber, guessLeft);
        
        
@@ -249,65 +171,11 @@
                     guessLeft--;
                     // guessNumber--;
                     guess.innerHTML = "You have : " +guessLeft + " guesses remaining";
-                    
-        if (guessLeft==6){
-            //small vertical line on top
-             ctx.moveTo(200,20);
-             ctx.lineTo(200,50);
-            ctx.stroke();
-        };
-        
-        if (guessLeft==5){
-             //circle arc(x,y,r,startangle,endangle)
-        ctx.beginPath();
-        ctx.arc(200,90,40,0,2*Math.PI);
-        ctx.stroke();
-        };
-        
-        if (guessLeft==4){
-        //horizontal line for the body
-        ctx.moveTo(200,130);
-        ctx.lineTo(200,350);
-        ctx.stroke();
-    };
-
-        if (guessLeft==3){
-              // left arm
-        ctx.moveTo(200,160);
-        ctx.lineTo(300,300);
-        ctx.stroke();
-        };
-
-      if (guessLeft==2){
-          //right arm
-          ctx.moveTo(200,160);
-        ctx.lineTo(100,300);
-        ctx.stroke();
-      };
-
-
-        if (guessLeft==1){
-             //left leg
-        ctx.moveTo(200,350);
-        ctx.lineTo(300,500);
-        ctx.stroke();
-        };
-
-       if (guessLeft==0){
-            //right leg
-        ctx.moveTo(200,350);
-        ctx.lineTo(100,500);
-        ctx.stroke();  
-       };
-    
-                
-                    //
                 } ;   
 
             if (letterArray.toString()==resultCollege.toString()){
             winNumber++;
-            win.innerHTML = "Win: " + winNumber 
-           
+            win.innerHTML = "Win: " + winNumber;
             alert("You win!   choose a category to start anew game!");
             Console.log(guessLeft);
             console.log(winNumber);
@@ -318,8 +186,7 @@
               hangmanCollege = collegeTeam[Math.floor((Math.random()* (collegeTeam.length))+1)];
               letterArray = hangmanCollege.split("");
               letterBlank = hangmanCollege.length;
-              guessLeft =7;
-            // guessLeft = hangmanCollege.length;
+            guessLeft = hangmanCollege.length;
             guessNumber.innerHTML = "You have : " + guessLeft + " guesses remaining";
             } ;    
 
@@ -337,17 +204,10 @@
               hangmanCollege = collegeTeam[Math.floor((Math.random()* (collegeTeam.length))+1)];
               letterArray = hangmanCollege.split("");
               letterBlank = hangmanCollege.length;
-              guessLeft = 7;
-            // guessLeft = hangmanCollege.length;
+            guessLeft = hangmanCollege.length;
             guessNumber.innerHTML = "You have : " + guessLeft + " guesses remaining";
-            
-
-            
-            
             };
-
             });
-          
         
         
           });
@@ -362,11 +222,8 @@
             hangmanNfl = nflTeam[Math.floor((Math.random()* (nflTeam.length))+1)];
             letterArray = hangmanNfl.split("");
             letterBlank = hangmanNfl.length;
-            // var guessNumber = hangmanNfl;
-            guessLeft = 7;
-            guess.innerHTML = "You have : " +guessLeft + " guesses remaining";
-
-            // var guessLeft = hangmanNfl.length;
+            var guessNumber = hangmanNfl;
+            var guessLeft = hangmanNfl.length;
              guessNumber.innerHTML = "You have : " + guessLeft + " guesses remaining";
            
             for (var i=0; i<letterBlank; i++)
@@ -380,8 +237,8 @@
           console.log(result);
           $(".letter-button").show(); 
 
-        //   var guessNumber = hangmanNfl.length;
-        // var guessLeft = guessNumber;
+          var guessNumber = hangmanNfl.length;
+        var guessLeft = guessNumber;
        $(".letter-button").click(function()
        {
         var newKey = $("<div>");
@@ -415,55 +272,6 @@
                     guessLeft--;
                     // guessNumber--;
                     guess.innerHTML = "You have : " +guessLeft + " guesses remaining";
-                    if (guessLeft==6){
-            //small vertical line on top
-             ctx.moveTo(200,20);
-             ctx.lineTo(200,50);
-            ctx.stroke();
-        };
-        
-        if (guessLeft==5){
-             //circle arc(x,y,r,startangle,endangle)
-        ctx.beginPath();
-        ctx.arc(200,90,40,0,2*Math.PI);
-        ctx.stroke();
-        };
-        
-        if (guessLeft==4){
-        //horizontal line for the body
-        ctx.moveTo(200,130);
-        ctx.lineTo(200,350);
-        ctx.stroke();
-    };
-
-        if (guessLeft==3){
-              // left arm
-        ctx.moveTo(200,160);
-        ctx.lineTo(300,300);
-        ctx.stroke();
-        };
-
-      if (guessLeft==2){
-          //right arm
-          ctx.moveTo(200,160);
-        ctx.lineTo(100,300);
-        ctx.stroke();
-      };
-
-
-        if (guessLeft==1){
-             //left leg
-        ctx.moveTo(200,350);
-        ctx.lineTo(300,500);
-        ctx.stroke();
-        };
-
-       if (guessLeft==0){
-            //right leg
-        ctx.moveTo(200,350);
-        ctx.lineTo(100,500);
-        ctx.stroke();  
-       };
                 } ;        
             });
     
@@ -481,8 +289,7 @@
               hangmanNfl = nflTeam[Math.floor((Math.random()* (nflTeam.length))+1)];
               letterArray = hangmanNfl.split("");
               letterBlank = hangmanNfl.length;
-            // guessLeft = hangmanNfl.length;
-            guessLeft = 7;
+            guessLeft = hangmanNfl.length;
             guessNumber.innerHTML = "You have : " + guessLeft + " guesses remaining";
             } ;    
 
@@ -500,29 +307,18 @@
               hangmanNfl = nflTeam[Math.floor((Math.random()* (nflTeam.length))+1)];
               letterArray = hangmanNfl.split("");
               letterBlank = hangmanNfl.length;
-            guessLeft = 7;
+            guessLeft = hangmanNfl.length;
             guessNumber.innerHTML = "You have : " + guessLeft + " guesses remaining";
             };
-
-      
-        
-
      });
      
 
-       
+       });   
         
-
-    
-       
-    
-
-
-
-    });  
+   
     </script>   
       
 
-  </body>   
+  </body>
 
   </html>
