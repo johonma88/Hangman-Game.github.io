@@ -6,49 +6,58 @@
 
   <!-- Bootstrap File -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
- <!-- style.css
- <link rel="stylesheet" type="text/css" href="assets/css/style.css"> -->
+ <!-- style.css -->
+ <!-- <link rel="stylesheet" type="text/css" href="assets/css/style.css">  -->
   <!-- JQuery -->
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://code.jquery.com/jquery.js"></script>
   <!--link to fonts-->
   <link href="https://fonts.googleapis.com/css?family=Orbitron" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Fredoka+One" rel="stylesheet">
 
 </head>
-<body>
-  	<div class="jumbotron" style="text-align:center; font-family: 'Orbitron', sans-serif; background-color:black; color: white;" >
-  			<h1>Football Team Hangman</h1>
+<style>
+  .letter {
+    width: 50px;
+    height: 50px;
+    border-style: solid;
+    padding: 2px;
+    font-family: 'Fredoka One', cursive;
+    margin: 2px;
+    font-size: 30px;
+  };
+</style>
+<body style="background-color:steelblue">
+  	<div class="jumbotron" style="text-align:center; font-family: 'Orbitron', sans-serif; background-color:rgb(56, 42, 42); color: white;" >
+        <h1>Football Team Hangman</h1>
+        <p> <audio src="music.mp3" controls></audio></p>
         <p><strong>Choose a category to play</strong></p>
-        <audio>
-          <source src="../music.mp3" type="audio/ogg">
-          
-        </audio>
-  		
+       
  		    <button class="btnCategory btnCollege"  id="buttonCollege" style="margin-left: 5px; color: black; background-color: white; height:50px; width:100px;"><strong>College</strong></button>
        <button class="btnCategory btnNFL"  id="buttonNFL" style="margin-left: 5px; color: black; background-color: white; height:50px; width:100px;"><strong>NFL</strong></button>
     </div> 
-    <div class="container" >
+    <div class="container" style="font-family: 'Fredoka One', cursive;">
       <div class="panel panel-default" style="text-align:center;"><h2 id="category" style="background-color; black; color; white;"> </h2></div>
     </div>
     
-    <div class="container"style="text-align:center;">
+    <div class="container"style="text-align:center; color: white;">
       <h1 id="wordGuess"> </h1>
     </div>
    
-    <div class="container"style="text-align:center;">
+    <div class="container"style="text-align:center;color: white;">
       <span id="guess"></span> 
     </div>
 
-    <div class="container"style="text-align:center;">
-      <span id="win"></span> 
+    <div class="container"style="text-align:center;color: white;">
+      <span id="win" style="font-size:30px;"></span> 
     </div>
 
-    <div class="container"style="text-align:center;">
-      <span id="lost"></span> 
+    <div class="container"style="text-align:center;color: white;">
+      <span id="lost" style="font-size:30px;"></span> 
     </div>
 
-    <div class="container"style="text-align:center;">
-      <h3>Choose a letter</h3>
+    <div class="container"style="text-align:center; ">
+      <h3 style="color:white;">Choose a letter</h3>
       <div id="buttons"></div>
     </div>
    
