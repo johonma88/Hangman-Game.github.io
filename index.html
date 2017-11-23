@@ -79,21 +79,21 @@
 
 
     <!-- <p> Used Letter</p> -->
-    <div id="usedLetter"></div>
+    <!-- <div id="usedLetter"></div> -->
 
 
     <script type="text/javascript">
       $(document).ready(function() {
         //variables globales
-		    var collegeTeam=["falcons","broncos","rams","bulldogs","rainbow warriors","wolf pack","lobos","aztecs","spartans","rebels","aggies","cowboys"]
-		    var nflTeam=["broncos","falcons","ravens","panthers","bears","bengals","cowboys","lions","packers","patriots","vikings","dolphins","giants"]
+		    var collegeTeam=["falcons","broncos","rams","bulldogs","tigers","cardinals","oranges","longhorns","wildcats","razorbacks","lobos","aztecs","spartans","rebels","aggies","cowboys"]
+		    var nflTeam=["broncos","falcons","ravens","panthers","bears","bengals","cowboys","lions","packers","patriots","vikings","dolphins","giants","raiders","steelers","seahawks"]
         var hangmanCollege = "";
         var hangmanNfl = "";
         var resultCollege = [];
+        var result = []; //resultNfl
          var wrongLetters = [];
         var letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
          var UserGuess= [];
-         var result = [];
          var newresult = [];
          var wrongLetters = [];
          var letterArray = [];
@@ -118,8 +118,6 @@
               letterBtn.text(letters[i]);
               $("#buttons").append(letterBtn);
           };
-
-
           //canvas
        var canvas = document.getElementById("myCanvas");
         var ctx = canvas.getContext("2d");
@@ -137,51 +135,13 @@
         ctx.lineTo(200,20);
         ctx.stroke();
    
-  
-
-   
-//         //small vertical line on top
-//         ctx.moveTo(200,20);
-//         ctx.lineTo(200,50);
-//         ctx.stroke();
-       
-//        //circle arc(x,y,r,startangle,endangle)
-//         ctx.beginPath();
-//         ctx.arc(200,90,40,0,2*Math.PI);
-//         ctx.stroke();
         
-//         //horizontal line for the body
-//         ctx.moveTo(200,130);
-//         ctx.lineTo(200,350);
-//         ctx.stroke();
-   
-//               // left arm
-//         ctx.moveTo(200,160);
-//         ctx.lineTo(300,300);
-//         ctx.stroke();
-   
-//           //right arm
-//           ctx.moveTo(200,160);
-//         ctx.lineTo(100,300);
-//         ctx.stroke();
-     
-// //left leg
-//         ctx.moveTo(200,350);
-//         ctx.lineTo(300,500);
-//         ctx.stroke();
-        
-//             //right leg
-//         ctx.moveTo(200,350);
-//         ctx.lineTo(100,500);
-//         ctx.stroke();  
-       
-
-        
-
         //College Button
          $(".btnCollege").on("click", function()
          {
-               resultCollege = [];
+              
+              resultCollege = [];
+              result=[];
                wrongLetters = [];
               var targetDiv = document.getElementById("category");
               targetDiv.innerHTML = "Category: College";
@@ -190,11 +150,10 @@
               letterBlank = hangmanCollege.length;
             //   guessNumber = document.getElementById("guess");
               guessLeft = 7;
-             guessNumber.innerHTML = "You have : " + guessLeft + " guesses remaining";
+            //  guessNumber.innerHTML = "You have : " + guessLeft + " guesses remaining";
            
-              guessNumber.innerHTML = "You have : " + hangmanCollege.length + " guesses remaining";
+              // guess.innerHTML = "You have : " + hangmanCollege.length + " guesses remaining";
               guess.innerHTML = "You have : " +guessLeft + " guesses remaining";
-
               $(".letter-button").show(); 
             
               for (var i=0; i<letterBlank; i++)
@@ -205,10 +164,10 @@
                document.getElementById("wordGuess").innerHTML = resultCollege.join(" ");
                 console.log(hangmanCollege);
                 console.log(letterArray);
-                console.log(resultCollege);
+                // console.log(resultCollege);
                 // var guessNumber = hangmanCollege.length;
                 var guessLeft = 7;
-                console.log(guessNumber, guessLeft);
+                console.log( guessLeft);
        
        
         $(".letter-button").click(function()
@@ -270,29 +229,24 @@
         ctx.lineTo(200,350);
         ctx.stroke();
     };
-
         if (guessLeft==3){
               // left arm
         ctx.moveTo(200,160);
         ctx.lineTo(300,300);
         ctx.stroke();
         };
-
       if (guessLeft==2){
           //right arm
           ctx.moveTo(200,160);
         ctx.lineTo(100,300);
         ctx.stroke();
       };
-
-
         if (guessLeft==1){
              //left leg
         ctx.moveTo(200,350);
         ctx.lineTo(300,500);
         ctx.stroke();
         };
-
        if (guessLeft==0){
             //right leg
         ctx.moveTo(200,350);
@@ -303,13 +257,12 @@
                 
                     //
                 } ;   
-
             if (letterArray.toString()==resultCollege.toString()){
             winNumber++;
             win.innerHTML = "Win: " + winNumber 
            
             alert("You win!   choose a category to start anew game!");
-            Console.log(guessLeft);
+            console.log(guessLeft);
             console.log(winNumber);
              resultCollege = [];
              wrongLetters = [];
@@ -320,15 +273,13 @@
               letterBlank = hangmanCollege.length;
               guessLeft =7;
             // guessLeft = hangmanCollege.length;
-            guessNumber.innerHTML = "You have : " + guessLeft + " guesses remaining";
+            guess.innerHTML = "You have : " + guessLeft + " guesses remaining";
             } ;    
-
-
             if ((letterArray.toString()!=resultCollege.toString()) && (guessLeft==0)){
              lostNumber++;
              lost.innerHTML = "Lost: "+lostNumber;
              alert("You lost!   choose a category to start anew game!");
-             Console.log(guessLeft);
+             console.log(guessLeft);
             console.log(winNumber);
              resultCollege = [];
              wrongLetters = [];
@@ -339,13 +290,11 @@
               letterBlank = hangmanCollege.length;
               guessLeft = 7;
             // guessLeft = hangmanCollege.length;
-            guessNumber.innerHTML = "You have : " + guessLeft + " guesses remaining";
+            // guessNumber.innerHTML = "You have : " + guessLeft + " guesses remaining";
             
-
             
             
             };
-
             });
           
         
@@ -355,8 +304,9 @@
         //NFL  Button
         $(".btnNFL").on("click", function()
         {
-            var result = [];
-            var wrongLetters = [];
+            result = [];
+            resultCollege =[];
+            // var wrongLetters = [];
             var targetDiv = document.getElementById("category");
             targetDiv.innerHTML = "Category: NFL";
             hangmanNfl = nflTeam[Math.floor((Math.random()* (nflTeam.length))+1)];
@@ -365,9 +315,8 @@
             // var guessNumber = hangmanNfl;
             guessLeft = 7;
             guess.innerHTML = "You have : " +guessLeft + " guesses remaining";
-
             // var guessLeft = hangmanNfl.length;
-             guessNumber.innerHTML = "You have : " + guessLeft + " guesses remaining";
+            //  guessNumber.innerHTML = "You have : " + guessLeft + " guesses remaining";
            
             for (var i=0; i<letterBlank; i++)
             {
@@ -376,10 +325,9 @@
          
             document.getElementById("wordGuess").innerHTML = result.join(" ");
           console.log(hangmanNfl);
-          console.log(hangmanNfl);
+          // console.log(hangmanNfl);
           console.log(result);
           $(".letter-button").show(); 
-
         //   var guessNumber = hangmanNfl.length;
         // var guessLeft = guessNumber;
        $(".letter-button").click(function()
@@ -435,29 +383,24 @@
         ctx.lineTo(200,350);
         ctx.stroke();
     };
-
         if (guessLeft==3){
               // left arm
         ctx.moveTo(200,160);
         ctx.lineTo(300,300);
         ctx.stroke();
         };
-
       if (guessLeft==2){
           //right arm
           ctx.moveTo(200,160);
         ctx.lineTo(100,300);
         ctx.stroke();
       };
-
-
         if (guessLeft==1){
              //left leg
         ctx.moveTo(200,350);
         ctx.lineTo(300,500);
         ctx.stroke();
         };
-
        if (guessLeft==0){
             //right leg
         ctx.moveTo(200,350);
@@ -483,11 +426,9 @@
               letterBlank = hangmanNfl.length;
             // guessLeft = hangmanNfl.length;
             guessLeft = 7;
-            guessNumber.innerHTML = "You have : " + guessLeft + " guesses remaining";
+            guess.innerHTML = "You have : " + guessLeft + " guesses remaining";
             } ;    
-
-
-            if ((letterArray.toString()!=resultNfl.toString()) && (guessLeft==0)){
+            if ((letterArray.toString()!=result.toString()) && (guessLeft==0)){
              lostNumber++;
              lost.innerHTML = "Lost: "+lostNumber;
              alert("You lost!   choose a category to start anew game!");
@@ -503,22 +444,15 @@
             guessLeft = 7;
             guessNumber.innerHTML = "You have : " + guessLeft + " guesses remaining";
             };
-
       
         
-
      });
      
-
        
         
-
     
        
     
-
-
-
     });  
     </script>   
       
