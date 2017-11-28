@@ -119,8 +119,9 @@
               $("#buttons").append(letterBtn);
           };
           //canvas
-       var canvas = document.getElementById("myCanvas");
+          var canvas = document.getElementById("myCanvas");
         var ctx = canvas.getContext("2d");
+       
         ctx.fillStyle = "#FF0000";
         //horizontal line at the bottom
         ctx.moveTo(5,595);
@@ -134,7 +135,6 @@
         ctx.moveTo(15,20);
         ctx.lineTo(200,20);
         ctx.stroke();
-   
         
         //College Button
          $(".btnCollege").on("click", function()
@@ -209,7 +209,7 @@
                     // guessNumber--;
                     guess.innerHTML = "You have : " +guessLeft + " guesses remaining";
                     
-        if (guessLeft==6){
+        if (guessLeft === 6){
             //small vertical line on top
              ctx.moveTo(200,20);
              ctx.lineTo(200,50);
@@ -314,7 +314,7 @@
             letterBlank = hangmanNfl.length;
             // var guessNumber = hangmanNfl;
             guessLeft = 7;
-            guess.innerHTML = "You have : " +guessLeft + " guesses remaining";
+            guess.innerHTML = "You have : " + guessLeft + " guesses remaining";
             // var guessLeft = hangmanNfl.length;
             //  guessNumber.innerHTML = "You have : " + guessLeft + " guesses remaining";
            
